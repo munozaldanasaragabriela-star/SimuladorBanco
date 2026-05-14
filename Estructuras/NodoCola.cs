@@ -1,14 +1,16 @@
+using SimuladorBanco.Entidades;
+
 namespace SimuladorBanco.Estructuras
 {
-    public class NodoCliente
+    public class NodoCola
     {
-        public Entidades.Cliente Dato { get; set; }
-        public NodoCliente Siguiente { get; set; }
+        public Cliente Dato { get; set; }
+        public NodoCola Siguiente { get; set; }
 
-        public NodoCliente(Entidades.Cliente cliente)
+        public NodoCola(Cliente cliente)
         {
             Dato = cliente;
             Siguiente = null;
         }
     }
-}   
+}

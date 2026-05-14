@@ -1,23 +1,30 @@
 namespace SimuladorBanco.Entidades
 {
-    public class Cliente
+    public enum TipoTransaccion
     {
-        public string Cedula { get; set; }
-        public string NombreCompleto { get; set; }
-        public string NumeroCuenta { get; set; }
-        public double Saldo { get; set; }
+        Deposito,
+        Retiro
+    }
 
-        public Cliente(string cedula, string nombreCompleto, string numeroCuenta, double saldo)
+    public class Transaccion
+    {
+        public string NumeroCuenta { get; set; }
+        public TipoTransaccion Tipo { get; set; }
+        public double Monto { get; set; }
+        public double SaldoAnterior { get; set; }
+
+        public Transaccion(string numeroCuenta, TipoTransaccion tipo, double monto, double saldoAnterior)
         {
-            Cedula = cedula;
-            NombreCompleto = nombreCompleto;
             NumeroCuenta = numeroCuenta;
-            Saldo = saldo;
+            Tipo = tipo;
+            Monto = monto;
+            SaldoAnterior = saldoAnterior;
         }
 
         public override string ToString()
         {
-            return $"[{NumeroCuenta}] {NombreCompleto} | Cédula: {Cedula} | Saldo: ${Saldo:F2}";
+            string tipoStr = Tipo == TipoTransaccion.Deposito ? "Depósito" : "Retiro";
+            return $"{tipoStr} de ${Monto:F2} en cuenta {NumeroCuenta} (saldo anterior: ${SaldoAnterior:F2})";
         }
     }
 }

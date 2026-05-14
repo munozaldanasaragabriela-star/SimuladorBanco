@@ -24,7 +24,6 @@ namespace SimuladorBanco.Estructuras
         public Transaccion Desapilar()
         {
             if (tope == null) return null;
-
             Transaccion ultima = tope.Dato;
             tope = tope.Siguiente;
             cantidad--;

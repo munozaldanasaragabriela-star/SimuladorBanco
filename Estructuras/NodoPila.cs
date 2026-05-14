@@ -1,11 +1,13 @@
+using SimuladorBanco.Entidades;
+
 namespace SimuladorBanco.Estructuras
 {
     public class NodoPila
     {
-        public Entidades.Transaccion Dato { get; set; }
+        public Transaccion Dato { get; set; }
         public NodoPila Siguiente { get; set; }
 
-        public NodoPila(Entidades.Transaccion transaccion)
+        public NodoPila(Transaccion transaccion)
         {
             Dato = transaccion;
             Siguiente = null;
