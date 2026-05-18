@@ -57,7 +57,7 @@ namespace SimuladorBanco.Interfaz
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"  {banco.Nombre,-44}");
+            Console.WriteLine($"{banco.Nombre,-44}");
             Console.ResetColor();
 
             string[] opciones = {
@@ -79,7 +79,7 @@ namespace SimuladorBanco.Interfaz
             foreach (string op in opciones)
                 Console.WriteLine($"║  {op,-44}║");
 
-            Console.ForegroundColor = ConsoleColor.Cyan;    
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.ResetColor();
             Console.Write("\n  Seleccione una opción: ");
         }
@@ -94,8 +94,14 @@ namespace SimuladorBanco.Interfaz
             Console.Write("  Nombre completo: ");
             string nombre = Console.ReadLine()?.Trim();
 
-            Console.Write("  Número de cuenta: ");
+            Console.Write("  Número de cuenta (11 dígitos): ");
             string cuenta = Console.ReadLine()?.Trim();
+
+            if (string.IsNullOrEmpty(cuenta) || cuenta.Length != 11)
+            {
+                Alerta("El número de cuenta debe tener exactamente 11 dígitos.");
+                return;
+            }
 
             Console.Write("  Saldo inicial: $");
             if (!double.TryParse(Console.ReadLine(), out double saldo) || saldo < 0)
@@ -104,7 +110,7 @@ namespace SimuladorBanco.Interfaz
                 return;
             }
 
-            if (string.IsNullOrEmpty(cedula) || string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(cuenta))
+            if (string.IsNullOrEmpty(cedula) || string.IsNullOrEmpty(nombre))
             {
                 Alerta("Todos los campos son obligatorios.");
                 return;
@@ -262,7 +268,7 @@ namespace SimuladorBanco.Interfaz
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"\n  ── {texto} ──\n");
+            Console.WriteLine($"\n  {texto} \n");
             Console.ResetColor();
         }
 
